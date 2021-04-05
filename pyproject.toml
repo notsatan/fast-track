@@ -1,0 +1,47 @@
+[tool.poetry]
+# Poetry pyproject.toml: https://python-poetry.org/docs/pyproject/
+name = "fast-track"
+version = "0.0.1"
+description = "A simple project containing a set of CRUD API endpoints for a contact book application."
+authors = ["demon-rem <22884507+demon-rem@users.noreply.github.com>"]
+license = "MIT"
+repository = "https://github.com/demon-rem/fast-track"
+homepage = "https://github.com/demon-rem/fast-track"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+
+[tool.poetry.dev-dependencies]
+darglint = "^1.5.7"
+isort = "^5.5.4"
+pyupgrade = "^2.7.2"
+black = "^20.8b1"
+mypy = "^0.812"
+bandit = "^1.6.2"
+safety = "^1.9.0"
+pytest = "^6.2.3"
+pylint = "^2.5.3"
+pydocstyle = "^6.0.0"
+pre-commit = "^2.9.0"
+pytest-cov = "^2.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+# https://github.com/psf/black
+target-version = ["py37"]
+
+[tool.isort]
+# https://github.com/timothycrosley/isort/
+known_typing = "typing,types,typing_extensions,mypy,mypy_extensions"
+sections = "FUTURE,TYPING,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+include_trailing_comma = true
+default_section = "FIRSTPARTY"
+multi_line_output = 3
+indent = 4
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 80

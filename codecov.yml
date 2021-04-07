@@ -9,11 +9,11 @@ coverage:
     project:
       default:
         threshold: 10%
-        target: 60%
+        target: 10%
     patch:
       default:
         threshold: 10%
-        target: 60%
+        target: 10%
 parsers:
   gcov:
     branch_detection:

@@ -1,0 +1,5 @@
+[fast-track]
+# Full path to the root directory, this is where database file, logs, etc will be stored.
+# Note: The string `{cur_dir}` will be replaced by the path to the directory containing
+# this config file during run-time.
+root_path={cur_dir}

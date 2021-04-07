@@ -2,6 +2,16 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.idea/**
+
+# Log file
+logs.txt
+
+# The main config file
+configs.ini
+
+# The main database being used
+contacts.db
 
 # C extensions
 *.so

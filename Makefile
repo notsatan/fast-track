@@ -79,7 +79,6 @@ else ifeq ($(ISORT_STRICT), 0)
 	ISORT_COMMAND_FLAG = -
 endif
 
-
 ifeq ($(MYPY_STRICT), 1)
 	MYPY_COMMAND_FLAG =
 else ifeq ($(MYPY_STRICT), 0)
@@ -177,6 +176,7 @@ test-suite: check-safety check-style test
 #	@docker rmi -f $(IMAGE):$(VERSION)
 
 .PHONY: clean-build
+## `clean-build`: Clean the build directory
 clean_build:
 	@rm -rf build/
 
@@ -184,6 +184,7 @@ clean_build:
 clean: clean_build # clean_docker
 
 .PHONY: clean-cache
+## `clean-cache`: Clear all the cache directories
 clean-cache:
 	@rm -rf .mypy_cache/
 	@rm -rf .pytest_cache/
@@ -191,6 +192,13 @@ clean-cache:
 	@rm -rf coverage.xml
 
 .PHONY: mypy
+## `mypy`: Run MyPy on the project
 mypy:
 	@echo -e "\n\tRunning check with MyPy"
 	@$(MYPY_COMMAND_FLAG)poetry run mypy --config-file setup.cfg src tests/**.py
+
+.PHONY: export-req
+## `export-req`: Populate requirements.txt using Poetry
+export-req:
+	@poetry export --dev --output requirements-dev.txt
+	@poetry export --output requirements.txt

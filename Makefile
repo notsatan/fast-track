@@ -120,7 +120,7 @@ check-safety:
 	@echo -e "\n\nSafety Check: "
 	@$(SAFETY_COMMAND_FLAG)poetry run safety check --full-report
 	@echo -e "\n\nBandIt: "
-	@$(BANDIT_COMMAND_FLAG)poetry run bandit -ll -r src/
+	@$(BANDIT_COMMAND_FLAG)poetry run bandit -ll -r src/ -c bandit.yml
 
 .PHONY: check-style
 ## `check-style`: Run style checkers on the code base
@@ -181,7 +181,7 @@ clean_build:
 	@rm -rf build/
 
 .PHONY: clean
-clean: clean_build # clean_docker
+clean: clean-build # clean_docker
 
 .PHONY: clean-cache
 ## `clean-cache`: Clear all the cache directories

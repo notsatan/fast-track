@@ -3,7 +3,7 @@ Defines the an abstract database class - meant to be used as the base class from
 all databases should inherit.
 """
 
-from typing import Any, Optional
+from typing import Any, Optional, Union
 
 import logging as logger
 from abc import ABC, abstractmethod
@@ -55,13 +55,14 @@ class BaseDB(ABC):
         logger.debug(f"Initializing an instance of database `{self.__db_instance}`")
 
     @abstractmethod
-    def execute_query(self, *args: Any, **kwargs: Any) -> Any:
+    def execute_query(self, query: str, *args: Any, **kwargs: Any) -> Any:
         """
         Executes raw queries on the database, returning the result.
 
         Note: Can be deprecated if the database does not allow executing raw queries.
 
         Args:
+            query: String containing the query to be executed
             *args: List of parameters to be added
             **kwargs: Named input parameters to be added to the database
 
@@ -88,41 +89,52 @@ class BaseDB(ABC):
         pass
 
     @abstractmethod
-    def remove_entry(self, *args: Any, **kwargs: Any) -> bool:
+    def remove_entry(self, email: str, *args: Any, **kwargs: Any) -> Union[bool, int]:
         """
         Remove entries from the database.
 
         Args:
+            email: String containing email of the contact to be deleted
             *args: List of parameters to be added
             **kwargs: Named input parameters to be added to the database
 
         Returns:
-            True if successful, false otherwise.
+            An integer containing the number of rows affected, false if the operation
+            fails.
         """
 
         pass
 
     @abstractmethod
-    def update_entry(self, *args: Any, **kwargs: Any) -> bool:
+    def update_entry(
+        self, email: str, update: Contact, *args: Any, **kwargs: Any
+    ) -> Union[int, bool]:
         """
         Update an existing entry from the database.
 
         Args:
+            email: String containing the email id of the original contact
+            contact: A new instance of `Contact` containing the changes to be made
             *args: List of parameters to be added
             **kwargs: Named input parameters to be added to the database
 
         Returns:
-            True if successful, false otherwise.
+            An integer containing the number of rows modified, or false if the operation
+            fails
         """
 
         pass
 
     @abstractmethod
-    def search_entry(self, *args: Any, **kwargs: Any) -> Optional[Any]:
+    def search_entry(
+        self, name: str, email: str, *args: Any, **kwargs: Any
+    ) -> Optional[Any]:
         """
         Search for existing entries in database.
 
         Args:
+            name: String containing name of the contact to search for
+            email: String containing email of the contact to search for
             *args: List of parameters to be added
             **kwargs: Named input parameters to be added to the database
 

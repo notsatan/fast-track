@@ -12,6 +12,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.6.1"
 Flask = "^1.1.2"
+cachetools = "^4.2.1"
 
 [tool.poetry.dev-dependencies]
 darglint = "^1.5.7"

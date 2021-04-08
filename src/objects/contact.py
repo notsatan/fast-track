@@ -2,6 +2,8 @@
 Defines base contact class.
 """
 
+from typing import Dict
+
 from json import dumps as prettify_json
 
 
@@ -55,13 +57,30 @@ class Contact:
 
         return prettify_json(
             obj={
-                f"{key}": value
+                key: value
                 for key, value in self.__dict__.items()
                 if not key.startswith("_") and not callable(key)
             },
-            indent=indent,
+            indent=indent if indent != 0 else None,
             sort_keys=True,
         )
+
+    def encode(self) -> Dict[str, str]:
+        """
+        Method to convert the class instance into a dictionary of key-value pairs.
+        Designed to make the class object be serializable
+
+        Returns:
+            Dictionary of string based key-value pairs, with the key being the name
+            of the variable in the class, and the value being the value held in the
+            instance.
+        """
+
+        return {
+            key: value
+            for key, value in self.__dict__.items()
+            if not key.startswith("_") and not callable(key)
+        }
 
     def __str__(self) -> str:
         return self.stringify(indent=0)

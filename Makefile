@@ -202,3 +202,7 @@ mypy:
 export-req:
 	@poetry export --dev --output requirements-dev.txt
 	@poetry export --output requirements.txt
+
+.PHONY: setup
+## `setup`: Complete setup to use fast-track
+setup: download-poetry install

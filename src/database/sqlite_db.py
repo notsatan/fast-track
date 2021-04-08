@@ -144,7 +144,7 @@ class SQLite(BaseDB):
                 return False
 
     # Cache upto 100 search results for 300 seconds
-    @cached(cache=TTLCache(maxsize=100, ttl=30))
+    @cached(cache=TTLCache(maxsize=100, ttl=10))
     def search_entry(
         self,
         name: Optional[str] = "",

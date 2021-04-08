@@ -3,3 +3,7 @@
 # Note: The string `{cur_dir}` will be replaced by the path to the directory containing
 # this config file during run-time.
 root_path={cur_dir}
+
+# Switch between debug and production mode. Any value other than `true` will be treated
+# as false
+debug=false
